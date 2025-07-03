@@ -32,11 +32,14 @@ function GuestList() {
       {loading ? (
         <p>Loading guests...</p>
       ) : (
-        <ul>
-          {guests.map((guest) => (
-            <li key={guest.id}>{guest.name}</li>
-          ))}
-        </ul>
+        <>
+          <ul>
+            {guests.map((guest) => (
+              <li key={guest.id}>{guest.name}</li>
+            ))}
+          </ul>
+          <p className="guest-count">Total guests: {guests.length}</p>
+        </>
       )}
     </div>
   );
