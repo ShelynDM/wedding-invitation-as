@@ -135,7 +135,10 @@ function App() {
       {showSeeYouModal && (
         <div className="modal">
           <div className="modal-content">
-            <h2>Thank you, {guestName}, for your confirmation!</h2>
+            <h2>
+              Thank you, <span className="guestName">{guestName}</span>, for
+              your confirmation!
+            </h2>
             <p>See you on our special day!</p>
             <button
               className="close-btn"
