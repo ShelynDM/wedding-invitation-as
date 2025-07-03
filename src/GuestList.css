@@ -1,6 +1,8 @@
 .guest-list-container {
-  padding: 2rem;
-  text-align: center;
+    padding: 2rem;
+    text-align: center;
+    background-color: #f6f6f6;
+    color: #343333;
 }
 
 .guest-list-container ul {
