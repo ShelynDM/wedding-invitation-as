@@ -4,6 +4,7 @@ import coupleImage from "./assets/couple.png";
 import line from "./assets/line.png";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "./firebase";
+import { Link } from "react-router-dom";
 
 function App() {
   const [showModal, setShowModal] = useState(true);
@@ -184,6 +185,11 @@ function App() {
           </p>
         </div>
       </div>
+      <Link to="/guest-list">
+        <button className="rsvp" style={{ marginTop: "1rem" }}>
+          View Guest List
+        </button>
+      </Link>
     </>
   );
 }
