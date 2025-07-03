@@ -185,11 +185,7 @@ function App() {
           </p>
         </div>
       </div>
-      <Link to="/guest-list">
-        <button style={{ marginTop: "1rem", color: "#343333" }}>
-          View Guest List
-        </button>
-      </Link>
+      <Link to="/guest-list">View Guest List</Link>
     </>
   );
 }
