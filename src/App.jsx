@@ -8,11 +8,12 @@ function App() {
   const [showRSVPModal, setShowRSVPModal] = useState(false);
   const [rsvpName, setRsvpName] = useState("");
   const [showFinalConfirmation, setShowFinalConfirmation] = useState(false);
-  const [guestName, setGuestName] = useState(""); // To save the confirmed name
+  const [guestName, setGuestName] = useState("");
   const [showSeeYouModal, setShowSeeYouModal] = useState(false);
   const [inputError, setInputError] = useState(false);
 
-  const handleRSVPInitialConfirm = () => {
+  const handleRSVPInitialConfirm = (e) => {
+    e.preventDefault(); // prevent default form behavior (if wrapped inside a form)
     if (!rsvpName.trim()) {
       setInputError(true);
     } else {
@@ -21,20 +22,20 @@ function App() {
     }
   };
 
-  const handleRSVPFinalConfirm = () => {
-    //setInputError(false);
+  const handleRSVPFinalConfirm = (e) => {
+    e.preventDefault();
     setGuestName(rsvpName);
     setShowRSVPModal(false);
     setShowFinalConfirmation(false);
     setShowSeeYouModal(true);
-
-    // Save the guest name and close the RSVP modal
   };
 
-  const handleNotNow = () => {
+  const handleNotNow = (e) => {
+    e.preventDefault();
     setShowRSVPModal(false);
     setShowFinalConfirmation(false);
     setRsvpName("");
+    setInputError(false);
   };
 
   return (
@@ -70,28 +71,26 @@ function App() {
                   Please RSVP by July 15. We appreciate your confirmation. Thank
                   you!
                 </p>
-                <input
-                  type="text"
-                  placeholder="Enter your name"
-                  value={rsvpName}
-                  onChange={(e) => {
-                    setRsvpName(e.target.value);
-                    setInputError(false);
-                  }}
-                  className="input-field"
-                />
-                {inputError && (
-                  <p className="error-message">
-                    Please enter your name to confirm your RSVP.
-                  </p>
-                )}
-
-                <button
-                  className="confirm-btn"
-                  onClick={handleRSVPInitialConfirm}
-                >
-                  Enter
-                </button>
+                <form onSubmit={handleRSVPInitialConfirm}>
+                  <input
+                    type="text"
+                    placeholder="Enter your name"
+                    value={rsvpName}
+                    onChange={(e) => {
+                      setRsvpName(e.target.value);
+                      setInputError(false);
+                    }}
+                    className="input-field"
+                  />
+                  {inputError && (
+                    <p className="error-message">
+                      Please enter your name to confirm your RSVP.
+                    </p>
+                  )}
+                  <button type="submit" className="confirm-btn">
+                    Enter
+                  </button>
+                </form>
               </>
             ) : (
               <>
@@ -120,10 +119,7 @@ function App() {
       {showSeeYouModal && (
         <div className="modal">
           <div className="modal-content">
-            <p>
-              Thank You, <span className="guestName">{guestName}</span> for your
-              confirmation!
-            </p>
+            <h2>Thank you, {guestName}, for your confirmation!</h2>
             <p>See you on our special day!</p>
             <button
               className="close-btn"
@@ -150,8 +146,8 @@ function App() {
               setShowRSVPModal(true);
               setShowFinalConfirmation(false);
               setRsvpName("");
+              setInputError(false);
             }}
-            style={{ cursor: "pointer" }}
           >
             RSVP
           </button>
