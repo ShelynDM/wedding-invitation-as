@@ -1,12 +1,8 @@
 .guest-list-container {
     padding: 2rem;
     text-align: center;
-    background-color: #f6f6f6;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-blend-mode: lighten;
     color: #343333;
     border-radius: 15px;
-    opacity: 2;
 }
 
 .guest-list-container ul {
