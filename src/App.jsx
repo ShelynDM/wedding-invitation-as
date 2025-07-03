@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./App.css";
 import coupleImage from "./assets/couple.png";
 import line from "./assets/line.png";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "./firebase";
 
 function App() {
   const [showModal, setShowModal] = useState(true);
@@ -22,12 +24,26 @@ function App() {
     }
   };
 
-  const handleRSVPFinalConfirm = (e) => {
+  const handleRSVPFinalConfirm = async (e) => {
     e.preventDefault();
-    setGuestName(rsvpName);
-    setShowRSVPModal(false);
-    setShowFinalConfirmation(false);
-    setShowSeeYouModal(true);
+    if (!rsvpName.trim()) {
+      setInputError(true);
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, "guests"), {
+        name: rsvpName.trim(),
+        timestamp: new Date(),
+      });
+      setGuestName(rsvpName);
+      setShowRSVPModal(false);
+      setShowFinalConfirmation(false);
+      setShowSeeYouModal(true);
+      setInputError(false);
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
   };
 
   const handleNotNow = (e) => {
