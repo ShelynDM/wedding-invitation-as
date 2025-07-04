@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { db } from "./firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import "./GuestList.css"; // Create this file if you'd like to style
 
 function GuestList() {
@@ -10,7 +10,10 @@ function GuestList() {
   useEffect(() => {
     const fetchGuests = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "guests"));
+        //const querySnapshot = await getDocs(collection(db, "guests"));
+        const q = query(collection(db, "guests"), orderBy("timestamp", "desc"));
+        const querySnapshot = await getDocs(q);
+
         const guestList = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
