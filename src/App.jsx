@@ -67,7 +67,7 @@ function App() {
               special day. If you have any questions or need assistance, feel
               free to reach out. We can't wait to celebrate with you!
             </p>
-            <p>To RSVP please click the RSVP button and enter your name.</p>
+            {/* <p>To RSVP please click the RSVP button and enter your name.</p> */}
             <button
               className="close-button"
               onClick={() => setShowModal(false)}
@@ -160,7 +160,7 @@ function App() {
         <div className="date-time">
           <p className="date">08 . 02 . 25</p>
           <p className="time">Saturday at 3:00 PM</p>
-          <button
+          {/* <button
             className="rsvp"
             onClick={() => {
               setShowRSVPModal(true);
@@ -170,7 +170,7 @@ function App() {
             }}
           >
             RSVP
-          </button>
+          </button> */}
           <p className="location">23 Martindale Crt NE, Calgary AB, T3J 2V8</p>
           <p className="dresscode">
             Guests are encouraged to wear a semi-formal dresscode
