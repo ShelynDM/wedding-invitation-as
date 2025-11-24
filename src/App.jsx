@@ -171,7 +171,7 @@ function App() {
           >
             RSVP
           </button> */}
-          <p className="location">23 Martindale Crt NE, Calgary AB, T3J 2V8</p>
+          <p className="location">123 Our House Crt NE, Calgary AB, A1B 2C3</p>
           <p className="dresscode">
             Guests are encouraged to wear a semi-formal dresscode
           </p>
